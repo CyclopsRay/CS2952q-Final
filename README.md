@@ -10,3 +10,8 @@ https://www.kaggle.com/code/shilongwu/vonenet
 
 The dataset required:
 ![](Dataset.png)
+
+The project description can be found here at DevPost:
+https://devpost.com/software/csci2470-final-project
+
+PS: Our project won the best overall presentation award!
