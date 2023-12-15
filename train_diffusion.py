@@ -14,6 +14,7 @@ from tqdm import tqdm
 from models.unetmodules.unet import UNetModel
 from models.sampler import DiffusionSampler
 from dataset import PizzaDataset
+import matplotlib.pyplot as plt
 
 
 def train():
@@ -30,12 +31,12 @@ def train():
         config = EasyDict(yaml.safe_load(f))
 
     unet = UNetModel(config).to(device)
-    sampler = DiffusionSampler(config).to(device)
-    sampler.sampling_steps = 100
+    sampler = DiffusionSampler(unet).to(device)
+    sampler.sampling_steps = 50
 
     optimizer = torch.optim.Adam(sampler.parameters(), lr=1e-4, betas=(0.9, 0.999), eps=1e-8, weight_decay=0.0)
 
-    chkpt_path = './data/checkpoints/unet-latest.pt'
+    chkpt_path = './data/checkpoints/sampler-latest.pt'
 
     epoch_start = 1
     for epoch in range(epoch_start, epoch_start + 100):
@@ -58,6 +59,16 @@ def train():
             train_progress_bar.set_description(f'Epoch {epoch}, batch_loss: {loss.item():.4f}')
 
         torch.save(sampler.state_dict(), chkpt_path)
+
+        sampler.eval()
+        with torch.no_grad():
+            shape = (1, 3, 256, 256)
+            for j in range(10):
+                output = sampler.ddim_sample(shape)
+                output = (output + 1.0) / 2.0
+                output = output[0]
+                output = output.permute(1, 2, 0).cpu().numpy()
+                plt.imsave(f'./data/samples/{epoch}-{j}.png', output)
 
 
 

@@ -434,6 +434,7 @@ class DiffusionSampler(torch.nn.Module):
         noise = torch.randn_like(model_mean).to(device)
         non_zero_mask = (1 - (t == 0).float()).reshape(B, *((1,) * (len(x.shape) - 1)))
         return model_mean + non_zero_mask * torch.exp(0.5 * log_variance) * noise
+
     def p_mean_variance(self, x, t, context=None, clip_scheme='static'):
         '''
 
