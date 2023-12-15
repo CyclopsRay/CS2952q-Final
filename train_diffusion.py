@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 def train():
 
     device = 'cuda'
-    pizza_data_dir = './'
+    pizza_data_dir = './data/pizza_data/images'
     dataset = PizzaDataset(pizza_data_dir)
 
     batch_size = 4
