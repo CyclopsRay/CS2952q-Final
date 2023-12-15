@@ -22,4 +22,5 @@ class PizzaDataset(Dataset):
 
     def __getitem__(self, idx):
         img = transforms.ToTensor()(PIL.Image.open(self.image_paths[idx]))
+        img = transforms.Resize((512, 512))(img)
         return img
