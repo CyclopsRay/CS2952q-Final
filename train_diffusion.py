@@ -23,7 +23,7 @@ def train():
     pizza_data_dir = './data/pizza_data/images'
     dataset = PizzaDataset(pizza_data_dir)
 
-    batch_size = 4
+    batch_size = 2
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
     config_path = './config/unet-config.yaml'
@@ -47,28 +47,31 @@ def train():
         train_progress_bar = tqdm(dataloader)
 
         for i, batch in enumerate(train_progress_bar):
-            optimizer.zero_grad()
+            try:
+                optimizer.zero_grad()
+                batch = batch.to(device)
+                batch = batch * 2.0 - 1.0
+                t = torch.randint(0, sampler.timesteps, (batch_size,), device=device).long()
+                loss = sampler.p_loss(batch, t)
+                batch_losses.append(loss.item())
+                loss.backward()
+                optimizer.step()
 
-            batch = batch.to(device)
-            t = torch.randint(0, sampler.timesteps, (batch_size,), device=device).long()
-            loss = sampler.p_loss(batch, t)
-            batch_losses.append(loss.item())
-            loss.backward()
-            optimizer.step()
-
-            train_progress_bar.set_description(f'Epoch {epoch}, batch_loss: {loss.item():.4f}')
+                train_progress_bar.set_description(f'Epoch {epoch}, batch_loss: {loss.item():.4f}')
+            except:
+                continue
 
         torch.save(sampler.state_dict(), chkpt_path)
 
         sampler.eval()
         with torch.no_grad():
-            shape = (1, 3, 256, 256)
+            shape = (1, 3, 512, 512)
             for j in range(10):
                 output = sampler.ddim_sample(shape)
                 output = (output + 1.0) / 2.0
                 output = output[0]
                 output = output.permute(1, 2, 0).cpu().numpy()
-                plt.imsave(f'./data/samples/{epoch}-{j}.png', output)
+                plt.imsave(f'./data/samples/ep{epoch}-{j}.png', output)
 
 
 
