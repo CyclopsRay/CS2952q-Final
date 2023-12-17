@@ -3,6 +3,7 @@ data/*
 play.py
 finetune.py
 finetune_controlnet.py
+models/sampler-latest.pt
 
 
 !data/carla_related_imgs.json
