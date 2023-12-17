@@ -23,6 +23,8 @@ import time
 from sklearn.metrics import f1_score
 import scipy.stats as stats
 import sys
+from vonenet import VOneNet
+from backend import EfficientNet_B0_Dense1024
 if not sys.warnoptions:
     import warnings
     warnings.simplefilter("ignore")
@@ -70,10 +72,10 @@ test=generator.flow_from_dataframe(valid_df, x_col='filepaths', y_col=columns, t
 
 
 lr=.001
-# model=VOneNet()
+model=VOneNet()
 # model=VOneNet_with_four_GFBs()
 # model=VOneNet_with_eight_GFBs()
-model=VOneNet_with_Only_Simple_GFBs()
+# model=VOneNet_with_Only_Simple_GFBs()
 # model=EfficientNet_B0_Dense1024(img_size, lr, class_count)
 epoch = 10
 history=model.fit(x=train,  epochs=epochs, verbose=1, validation_data=val, shuffle=True,  initial_epoch=0)
