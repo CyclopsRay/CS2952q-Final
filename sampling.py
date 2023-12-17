@@ -61,7 +61,7 @@ def add_noise_and_denoise(sampler, img, t_level):
     # shape (1, 3, H, W)
     img = img.unsqueeze(0)
 
-    # cast int t to batched tensor
+    # cast int t to batched tensor shape: (1,)
     t_tensor = torch.full((1,), t_level, device=device, dtype=torch.long)
 
     # initialize noise
@@ -84,6 +84,8 @@ def add_noise_and_denoise(sampler, img, t_level):
 
         time_cond = torch.full((1,), t, device=device, dtype=torch.long)
 
+        # x_start is the less noisy image after removing pred_noise
+        # pred_noise is the output of the model
         pred_noise, x_start = sampler.model_predictions(output, time_cond)
 
         if t_m1 < 0:
@@ -109,8 +111,8 @@ def add_noise_and_denoise(sampler, img, t_level):
     img_noisy = torch.clamp(img_noisy, 0.0, 1.0)
     output = torch.clamp(output, 0.0, 1.0)
 
-    print('noisy', img_noisy.min(), img_noisy.max())
-    print('outpput', output.min(), output.max())
+    # print('noisy', img_noisy.min(), img_noisy.max())
+    # print('outpput', output.min(), output.max())
 
     return output, img_noisy
 
