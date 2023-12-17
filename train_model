@@ -34,8 +34,8 @@ pd.set_option('display.max_colwidth', None)
 
 #   ---------load data
 # This is the kaggle dataset path
-datapath=r'../input/pizza-images-with-topping-labels/pizza_data/labels.csv'
-imgpath=r'../input/pizza-images-with-topping-labels/pizza_data/images'
+datapath=r'./attack_input/labels.csv'
+imgpath=r'./attack_input/eps5'
 
 # datapath=r'pizza_data/labels.csv'
 # imgpath=r'pizza_data/images'
