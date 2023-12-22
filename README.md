@@ -13,7 +13,7 @@ Diffustion and EfficientNet accuracy under different t:
 
 VOneNet under different number of Gabor Filters (GF):
 
-![](VOne_result.jpeg)
+![](vone_gf.jpeg)
 
 The dataset required:
 ![](Dataset.png)
