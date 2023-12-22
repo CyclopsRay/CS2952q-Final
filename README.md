@@ -30,3 +30,5 @@ For downloading, please refer to this link.
 Put the folders under this directory in a new folder named `attack_input` under the root directory.
 
 For generating on your own, please change the model name and run the script `generate_adv.py`.
+
+After you put the images in the right directory, go to the `train_test.py` and select the model you want to test. More specifically, change the `model_name`. Then run the code.
