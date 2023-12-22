@@ -130,14 +130,8 @@ test_loader = DataLoader(test_dataset, batch_size=30, shuffle=False)
 # ---------------------------------------------------------------------- Now comes something serious --------------------------------------------------------
 if model_name == "V+E:
     lr=.001
-    if 
     # Test VOneNet and Efficient Net. Those 2 models are writen in Tensorflow.
     model=VOneNet()
-    # model=DiffusionSampler()
-    # model=VOneNet_with_four_GFBs()
-    # model=VOneNet_with_eight_GFBs()
-    # model=VOneNet_with_Only_Simple_GFBs()
-    # model=EfficientNet_B0_Dense1024(img_size, lr, class_count)
     epoch = 10
     history=model.fit(x=train,  epochs=epochs, verbose=1, validation_data=val, shuffle=True,  initial_epoch=0)
     print(history.history)
@@ -145,13 +139,6 @@ if model_name == "V+E:
     print(results)
 elif model_name == "E":
     lr=.001
-    if 
-    # Test VOneNet and Efficient Net. Those 2 models are writen in Tensorflow.
-    # model=VOneNet()
-    # model=DiffusionSampler()
-    # model=VOneNet_with_four_GFBs()
-    # model=VOneNet_with_eight_GFBs()
-    # model=VOneNet_with_Only_Simple_GFBs()
     model=EfficientNet_B0_Dense1024(img_size, lr, class_count)
     epoch = 10
     history=model.fit(x=train,  epochs=epochs, verbose=1, validation_data=val, shuffle=True,  initial_epoch=0)
