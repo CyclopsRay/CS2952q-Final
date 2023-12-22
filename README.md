@@ -16,10 +16,8 @@ VOneNet under different number of Gabor Filters (GF):
 ![](vone_gf.jpeg)
 
 The dataset required:
+
+
 ![](Dataset.png)
-
-The previous research on the VOneNet can be found in this link:
-https://devpost.com/software/csci2470-final-project
-
 
 
