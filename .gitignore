@@ -4,7 +4,7 @@ play.py
 finetune.py
 finetune_controlnet.py
 models/sampler-latest.pt
-
+attack_input/*
 
 !data/carla_related_imgs.json
 
