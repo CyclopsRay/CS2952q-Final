@@ -23,4 +23,10 @@ VOneNet under different number of Gabor Filters (GF):
 ![](vone_gf.jpeg)
 For our experimental setting, we picked GF number to be 8 for compromised training accuracy and runtime.
 
+To run this project, you will need to download all the attack images. 
 
+For downloading, please refer to this link. 
+
+Put the folders under this directory in a new folder named `attack_input` under the root directory.
+
+For generating on your own, please change the model name and run the script `generate_adv.py`.
