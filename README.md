@@ -1,17 +1,25 @@
 #Readme
 ## Modified VOneNet very Robust
-This project is presented as the final project of CSCI2470 at Brown University. Due to the size limitation, the dataset cannot be upload. Please reference the Kaggle link for running & testing. Thanks!
+This project is build based on CS2470 research, the foolproof eyes. In extend to it, we build another diffusion model and incorperate them together to genereate a better robustness result.
+E stands for EfficientNet.
+V stands for VOneNet.
+D stands for Diffusion Model.
 
-The test notebook:
-https://www.kaggle.com/code/shilongwu/vonenet-test
+![](main_result.png)
 
-The main notebook:
-https://www.kaggle.com/code/shilongwu/vonenet
+Diffustion and EfficientNet accuracy under different t:
+
+![](diffusion_result.png)
+
+VOneNet under different number of Gabor Filters (GF):
+
+![](VOne_result.jpeg)
 
 The dataset required:
 ![](Dataset.png)
 
-The project description can be found here at DevPost:
+The previous research on the VOneNet can be found in this link:
 https://devpost.com/software/csci2470-final-project
 
-PS: Our project won the best overall presentation award!
+
+
